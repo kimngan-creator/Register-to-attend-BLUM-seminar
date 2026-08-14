@@ -252,6 +252,11 @@ body {
         height: 220px;
         min-height: unset;
         width: 100%;
+        border: 1px solid rgba(255, 90, 0, 0.15);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.6), 0 4px 12px rgba(255, 90, 0, 0.1);
+    }
+    .speaker-panel img {
+        filter: grayscale(0%) contrast(1.05) brightness(0.9);
     }
     .speaker-panel:hover {
         flex: none;
@@ -261,9 +266,9 @@ body {
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-end;
-        padding: 0.8rem;
-        height: 70%;
-        background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+        padding: 1rem 0.8rem;
+        height: 80%;
+        background: linear-gradient(to top, rgba(10, 5, 0, 0.95) 0%, rgba(242, 89, 34, 0.5) 55%, transparent 100%);
     }
     .panel-info {
         text-align: left;
