@@ -28,37 +28,39 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.style.opacity = '0.8';
         submitBtn.style.pointerEvents = 'none';
 
-        // Prepare data for Google Forms
+        // Prepare data for Google Apps Script
         const formData = new FormData();
-        formData.append('entry.1554085317', document.getElementById('fullName').value);
-        formData.append('entry.893063847', document.getElementById('company').value);
-        formData.append('entry.1160430535', document.getElementById('phone').value);
-        formData.append('entry.949743772', document.getElementById('email').value);
+        formData.append('fullName', document.getElementById('fullName').value);
+        formData.append('company', document.getElementById('company').value);
+        formData.append('phone', document.getElementById('phone').value);
+        formData.append('email', document.getElementById('email').value);
 
         // Lĩnh vực hoạt động
         const industryRadio = document.querySelector('input[name="industry"]:checked');
         if (industryRadio && industryRadio.value === 'Khác') {
-            formData.append('entry.1777886525', '__other_option__');
-            formData.append('entry.1777886525.other_option_response', document.getElementById('industryOther').value);
+            formData.append('industry', 'Khác: ' + document.getElementById('industryOther').value);
         } else if (industryRadio) {
-            formData.append('entry.1777886525', industryRadio.value);
+            formData.append('industry', industryRadio.value);
         }
 
         // Hình thức tham dự
         const attendanceRadio = document.querySelector('input[name="attendanceType"]:checked');
         if (attendanceRadio && attendanceRadio.value === 'Đi theo nhóm') {
             const count = document.getElementById('groupCount').value;
-            formData.append('entry.930914416', 'Đi theo nhóm → Số lượng người tham dự: ' + count + ' người');
+            formData.append('attendanceType', 'Đi theo nhóm (' + count + ' người)');
         } else if (attendanceRadio) {
-            formData.append('entry.930914416', attendanceRadio.value);
+            formData.append('attendanceType', attendanceRadio.value);
         }
 
-        // Gửi data tới Google Forms
-        fetch('https://docs.google.com/forms/d/e/1FAIpQLScDEEPi8UWNX8Zfb9gayTeadBRNe7cSGNwK1uTJsPLUQTQ8yQ/formResponse', {
+        // ĐIỀN LINK GOOGLE APPS SCRIPT CỦA BẠN VÀO ĐÂY
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxnRSFyxvsdyjcrKYO8KWNPYWnG702k1kHixqStFPNrJH3tPKF0ofeB9avXHkVHB5aS/exec';
+
+        // Gửi data tới Google Sheets thông qua Google Apps Script
+        fetch(scriptURL, {
             method: 'POST',
-            mode: 'no-cors', // Bắt buộc để tránh lỗi CORS khi submit ngầm
+            mode: 'no-cors',
             body: formData
-        }).then(() => {
+        }).then(response => {
             // Fade out form
             form.style.opacity = '0';
             form.style.visibility = 'hidden';
