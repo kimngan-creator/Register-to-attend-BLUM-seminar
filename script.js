@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ĐIỀN LINK GOOGLE APPS SCRIPT CỦA BẠN VÀO ĐÂY
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxnRSFyxvsdyjcrKYO8KWNPYWnG702k1kHixqStFPNrJH3tPKF0ofeB9avXHkVHB5aS/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxCRZBZI9zvBwYhGzrDb0RxLixILE85qR5IkEsBNqpqi40qzwrCLCXiUUGAkbpa1X4R/exec';
 
         // Chuyển đổi FormData sang định dạng an toàn tuyệt đối cho GAS (URL-encoded)
         const urlEncodedData = new URLSearchParams(formData).toString();
