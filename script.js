@@ -55,11 +55,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // ĐIỀN LINK GOOGLE APPS SCRIPT CỦA BẠN VÀO ĐÂY
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxnRSFyxvsdyjcrKYO8KWNPYWnG702k1kHixqStFPNrJH3tPKF0ofeB9avXHkVHB5aS/exec';
 
+        // Chuyển đổi FormData sang định dạng an toàn tuyệt đối cho GAS (URL-encoded)
+        const urlEncodedData = new URLSearchParams(formData).toString();
+
         // Gửi data tới Google Sheets thông qua Google Apps Script
         fetch(scriptURL, {
             method: 'POST',
             mode: 'no-cors',
-            body: formData
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: urlEncodedData
         }).then(response => {
             // Fade out form
             form.style.opacity = '0';
