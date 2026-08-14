@@ -247,10 +247,13 @@ body {
         gap: 1.2rem;
     }
     .speaker-panel {
+        flex: none;
         height: 180px;
+        min-height: 180px;
+        width: 100%;
     }
     .speaker-panel:hover {
-        flex: auto;
+        flex: none;
         height: 220px;
     }
     .panel-overlay {
